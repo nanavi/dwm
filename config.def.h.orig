@@ -91,7 +91,6 @@ static const char *powermenu[]  = FISH(SCRIPT("powermenu.x11.rofi.fish"));
 static const char *rofilauncher[] = FISH(SCRIPT("launcher.x11.rofi.fish"));
 static const char *kblayout_menu[] = FISH(SCRIPT("kb-layouts.x11.rofi.fish"));
 
-#include "movestack.c"
 static Key keys[] = {
 	/* modifier           key                     function        argument */
 	{ MODKEY,             XK_o,                      spawn,          {.v = rofilauncher } },

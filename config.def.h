@@ -10,7 +10,14 @@ static const int usealtbar          = 0;          /* 1 means use non-dwm status 
 static const char *altbarclass      = "";         /* Alternate bar class name */
 static const char *alttrayname      = "";         /* Polybar tray instance name */
 static const char *altbarcmd        = "";         /* Alternate bar launch command */
-static const char *fonts[]          = { "RobotoMono Nerd Font:size=11" };
+static const char *fonts[]          = { 
+	"RobotoMono Nerd Font:style=Regular:size=11",
+	"Noto Color Emoji:style=Regular:size=11",
+	"Material Icons:size=10",
+	"Font Awesome 5 Brands:style=Solid:size=11",
+	"Font Awesome 5 Free:style=Regular:size=11",
+	"Font Awesome 5 Free:style=Solid:size=11",
+};
 static const char dmenufont[]       = "FiraCode Nerd Font:size=11";
 static const char startup[]         = "$HOME/.config/myscripts/startup.x11.sh";
 static const char *colors[][3]      = {
@@ -91,7 +98,6 @@ static const char *powermenu[]  = FISH(SCRIPT("powermenu.x11.rofi.fish"));
 static const char *rofilauncher[] = FISH(SCRIPT("launcher.x11.rofi.fish"));
 static const char *kblayout_menu[] = FISH(SCRIPT("kb-layouts.x11.rofi.fish"));
 
-#include "movestack.c"
 static Key keys[] = {
 	/* modifier           key                     function        argument */
 	{ MODKEY,             XK_o,                      spawn,          {.v = rofilauncher } },
@@ -99,6 +105,8 @@ static Key keys[] = {
 	{ MODKEY,             XK_b,                      togglebar,      {0} },
 	{ MODKEY,             XK_j,                      focusstack,     {.i = +1 } },
 	{ MODKEY,             XK_k,                      focusstack,     {.i = -1 } },
+	{ MODKEY|ShiftMask,   XK_j,                      pushdown,       {0} },
+	{ MODKEY|ShiftMask,   XK_k,                      pushup,         {0} },
 	{ MODKEY,             XK_i,                      incnmaster,     {.i = +1 } }, /* increment a master */
 	{ MODKEY,             XK_d,                      incnmaster,     {.i = -1 } }, /* decrement a master */
 	{ MODKEY,             XK_h,                      setmfact,       {.f = -0.05} },
@@ -130,9 +138,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,   XK_x,                      quit,           {0} },
 	{ MODKEY,             XK_minus,                  setgaps,        {.i = -5 } },
 	{ MODKEY,             XK_equal,                  setgaps,        {.i = +5 } },
-	{ MODKEY,             XK_g,                      setgaps,        {.i = GAP_RESET } },
-	{ MODKEY|ShiftMask,   XK_g,                      setgaps,        {.i = GAP_TOGGLE} },
-	/* SOUND */
+	{ MODKEY|ShiftMask,   XK_g,                      setgaps,        {.i = GAP_RESET } },
+	{ MODKEY,             XK_g,                      setgaps,        {.i = GAP_TOGGLE} },
 	{ 0,                  XF86XK_AudioMute,          spawn,          {.v = mutevol } },
 	{ 0,                  XF86XK_AudioLowerVolume,   spawn,          {.v = downvol } },
 	{ 0,                  XF86XK_AudioRaiseVolume,   spawn,          {.v = upvol   } },
@@ -141,8 +148,7 @@ static Key keys[] = {
 	{ 0,                  XF86XK_AudioPrev,    	     spawn,          {.v = prevtrack  } },
 	{ MODKEY|AltMask,     XK_j,                      shiftview,      {.i = -1 } },
 	{ MODKEY|AltMask,     XK_k,                      shiftview,      {.i = +1 } },
-	/* Focus Master */
-	{ MODKEY|ControlMask, XK_space,                  focusmaster,    {0} },
+	{ AltMask,            XK_m,                      focusmaster,    {0} },
 	{ 0,                  XK_Print,                  spawn,          {.v = screenshot } },
 	{ ControlMask,        XK_Print,                  spawn,          {.v = sshot_area} },
 	{ 0,                  XF86XK_MonBrightnessUp,    spawn,          {.v = brightup } },

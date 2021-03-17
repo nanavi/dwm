@@ -7,5 +7,7 @@ xset m 0 0
 #VM
 xrandr --size 1920x1080
 feh --bg-fill ~/Img/wallpaper
+dwmblocks &
+dunst &
 #kitty -e nvim
 #picom &

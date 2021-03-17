@@ -17,6 +17,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Roboto Mono:size=10",
                                         "JoyPixels:size=10",
+                                        "Material Design Icons:size=10",
                                       };
 static const char startup[]         = "$HOME/.config/dwm/startup.sh";
 static const char dmenufont[]       = "monospace:size=10";
@@ -27,7 +28,7 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg        border   */
-	[SchemeNorm] = { "#D5C4A1", "#282828", "#282828"},
+	[SchemeNorm] = { "#D5C4A1", "#202020", "#282828"},
 	[SchemeSel]  = { "#FBF1C7", "#3C3836", "#FFAF3E"},
 };
 

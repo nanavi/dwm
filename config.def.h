@@ -108,7 +108,7 @@ static const char *screenshotFull[]   = ACMD(HS"screenshot.sh scrot fullToClip")
 static const char *screenshotSelect[] = ACMD(HS"screenshot.sh scrot selectToClip");
 static const char *screenshotWindow[] = ACMD(HS"screenshot.sh scrot windowToClip");
 static const char *flamescreenshot[]  = ACMD(HS"screenshot.sh flameshot select");
-#define BROWSER "brave"
+#define BROWSER "firefox"
 static const char *openBrowser[] = ACMD(BROWSER);
 static const char *openEditor[]  = ACMD("kitty -e nvim");
 static const char *openYT[]      = ACMD(BROWSER" youtube.com");
@@ -153,7 +153,7 @@ static Key keys[] = {
   { MODKEY,             XK_u,                      incrgaps,       {.i = +1 } },
   { MODKEY|ShiftMask,   XK_u,                      incrgaps,       {.i = -1 } },
   { MODKEY,             XK_g,                      togglegaps,     {0} },
-  { MODKEY|ShiftMask,   XK_0,                      defaultgaps,    {0} },
+  { MODKEY|ShiftMask,   XK_g,                      defaultgaps,    {0} },
 	TAGKEYS(              XK_1,                      0)
 	TAGKEYS(              XK_2,                      1)
 	TAGKEYS(              XK_3,                      2)

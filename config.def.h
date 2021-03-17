@@ -84,26 +84,34 @@ static const Layout layouts[] = {
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-#define HS "$HOME/.config/hotscripts/"
-#define UCMD(cmd) { "/bin/sh", "-c", cmd, NULL }
+#define ACMD(cmd) { "/bin/sh", "-c", cmd, NULL }
 
 /* commands */
 static char dmenumon[2]         = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]    = { "kitty", NULL };
-static const char *upvol[]      = { "pamixer", "-i", "5", NULL };
-static const char *downvol[]    = { "pamixer", "-d", "5", NULL };
-static const char *mutevol[]    = { "pamixer", "--toggle-mute", NULL };
-static const char *pausetrack[] = { "playerctl", "play-pause", NULL };
-static const char *prevtrack[]  = { "playerctl", "previous", NULL };
-static const char *nexttrack[]  = { "playerctl", "next", NULL };
-static const char *brightup[]   = {"xbacklight", "+5", NULL};
-static const char *brightdown[] = {"xbacklight", "-5", NULL};
+static const char *upvol[]      = ACMD("pamixer -i 5");
+static const char *downvol[]    = ACMD("pamixer -d 5");
+static const char *mutevol[]    = ACMD("pamixer --toggle-mute");
+static const char *pausetrack[] = ACMD("playerctl play-pause");
+static const char *prevtrack[]  = ACMD("playerctl previous");
+static const char *nexttrack[]  = ACMD("playerctl next");
+static const char *brightup[]   = ACMD("xbacklight +5");
+static const char *brightdown[] = ACMD("xbacklight -5");
 #define THEME "$HOME/.config/rofi/launcher.rasi"
-static const char *rofi_drw[]   = UCMD("rofi -show drun -modi drun,run,window -theme "THEME);
-static const char *rofi_r[]     = UCMD("rofi -show run -modi run -theme "THEME);
-static const char *kblayout_menu[] = UCMD(HS"kb-layouts.x11.rofi.sh");
-static const char *powermenu[]  = UCMD(HS"powermenu.x11.rofi.fish");
+#define HS "$HOME/.config/hotscripts/"
+static const char *rofi_drw[]   = ACMD("rofi -show drun -modi drun,run,window -theme "THEME);
+static const char *rofi_r[]     = ACMD("rofi -show run -modi run -theme "THEME);
+static const char *kblayout_menu[] = ACMD(HS"kb-layouts.x11.rofi.sh");
+static const char *powermenu[]     = ACMD(HS"powermenu.x11.rofi.fish");
+static const char *screenshotFull[]   = ACMD(HS"screenshot.sh scrot fullToClip");
+static const char *screenshotSelect[] = ACMD(HS"screenshot.sh scrot selectToClip");
+static const char *screenshotWindow[] = ACMD(HS"screenshot.sh scrot windowToClip");
+static const char *flamescreenshot[]  = ACMD(HS"screenshot.sh flameshot select");
+#define BROWSER "brave"
+static const char *openBrowser[] = ACMD(BROWSER);
+static const char *openEditor[]  = ACMD("kitty -e nvim");
+static const char *openYT[]      = ACMD(BROWSER" youtube.com");
 
 #include "shiftview.c"
 #include "push.c"
@@ -169,6 +177,13 @@ static Key keys[] = {
 	{ 0,                  XF86XK_MonBrightnessDown,  spawn,          {.v = brightdown } },
 	{ MODKEY,             XK_x,                      spawn,          {.v = powermenu } },
 	{ MODKEY|AltMask,     XK_l,                      spawn,          {.v = kblayout_menu} },
+	{ 0,                  XK_Print,                  spawn,          {.v = screenshotFull} },
+	{ ControlMask,        XK_Print,                  spawn,          {.v = screenshotWindow} },
+	{ MODKEY,             XK_Print,                  spawn,          {.v = screenshotSelect} },
+	{ MODKEY|ShiftMask,   XK_Print,                  spawn,          {.v = flamescreenshot} },
+	{ MODKEY,             XK_w,                      spawn,          {.v = openBrowser} },
+	{ MODKEY,             XK_e,                      spawn,          {.v = openEditor} },
+	{ MODKEY,             XK_y,                      spawn,          {.v = openYT} },
 };
 
 /* button definitions */

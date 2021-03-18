@@ -108,7 +108,7 @@ static const char *screenshotFull[]   = ACMD(HS"screenshot.sh scrot fullToClip")
 static const char *screenshotSelect[] = ACMD(HS"screenshot.sh scrot selectToClip");
 static const char *screenshotWindow[] = ACMD(HS"screenshot.sh scrot windowToClip");
 static const char *flamescreenshot[]  = ACMD(HS"screenshot.sh flameshot select");
-#define BROWSER "firefox"
+#define BROWSER "brave"
 static const char *openBrowser[] = ACMD(BROWSER);
 static const char *openEditor[]  = ACMD("kitty -e nvim");
 static const char *openYT[]      = ACMD(BROWSER" youtube.com");
@@ -125,8 +125,8 @@ static Key keys[] = {
   { MODKEY,             XK_k,                      focusstack,     {.i = -1 } },
   { MODKEY|ShiftMask,   XK_j,                      pushdown,       {0} },
   { MODKEY|ShiftMask,   XK_k,                      pushup,         {0} },
-  { MODKEY,             XK_o,                      incnmaster,     {.i = +1 } },
-  { MODKEY,             XK_i,                      incnmaster,     {.i = -1 } },
+  { MODKEY,             XK_i,                      incnmaster,     {.i = +1 } },
+  { MODKEY,             XK_u,                      incnmaster,     {.i = -1 } },
   { MODKEY,             XK_h,                      setmfact,       {.f = -0.05} },
   { MODKEY,             XK_l,                      setmfact,       {.f = +0.05} },
   { MODKEY,             XK_Return,                 zoom,           {0} },
@@ -150,8 +150,8 @@ static Key keys[] = {
   { MODKEY,             XK_period,                 focusmon,       {.i = +1 } },
   { MODKEY|ShiftMask,   XK_comma,                  tagmon,         {.i = -1 } },
   { MODKEY|ShiftMask,   XK_period,                 tagmon,         {.i = +1 } },
-  { MODKEY,             XK_u,                      incrgaps,       {.i = +1 } },
-  { MODKEY|ShiftMask,   XK_u,                      incrgaps,       {.i = -1 } },
+  { MODKEY,             XK_o,                      incrgaps,       {.i = +1 } },
+  { MODKEY|ShiftMask,   XK_o,                      incrgaps,       {.i = -1 } },
   { MODKEY,             XK_g,                      togglegaps,     {0} },
   { MODKEY|ShiftMask,   XK_g,                      defaultgaps,    {0} },
   TAGKEYS(              XK_1,                      0)
